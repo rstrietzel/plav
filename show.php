@@ -1,5 +1,5 @@
 <!-- Show Gallery here -->
-<?php include("config.php")?>
+<?php include("config.php"); ?>
 <!doctype html>
 <html>
     <head>
@@ -38,7 +38,9 @@
         <div id="buttons">
             <a href="#" id="slideshow">Slideshow</a>
             <a href="#" id="fullscreen">Fullscreen</a>
-            <a href="#" id="download">Zur Downloadliste hinzufuegen</a>
+            <a href="#" id="download">Auf Downloadliste</a>
+            <a href="download.php" target="_blank">Markierte downloaden</a>
+
         </div>
         <div id="galleria">
 

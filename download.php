@@ -7,7 +7,7 @@ $overwrite = true;
 foreach ($downloadlist as $index => $file) {
 	$file = explode("/", $file);
 	$file[0] = IMAGES_DIR;
-	//$file[count($file)-1] = implode(".",array_slice(explode(".",$file[count($file)-1]), 1));
+	$file[count($file)-1] = implode(".",array_slice(explode(".",$file[count($file)-1]), 1));
 	//print_r($file);
 	$downloadlist[$index] = implode("/", $file);
 }
