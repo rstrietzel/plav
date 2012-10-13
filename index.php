@@ -33,8 +33,8 @@ if (! is_dir($realDir)) {
 	header("HTTP/1.1 404 Not Found");
 	die("Directory Not Found");
 }
-//exec exec* since that will be executed by bash specifically and not maybe by dash or sth else
-exec('bash -c "exec nohup setsid ./genWebQual.sh '.$realDir.' >> /tmp/log2 2>&1 &"');
+
+
 
 // init folders with the . folder
 $folders = array();
@@ -50,7 +50,7 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 	{
 		$folders[] = array( "name" => $file, "file" => "$realDir/$file", "link" => "$scriptUrl$simplePath/$file" );
                 $folderCount++;
-                exec('bash -c "exec nohup setsid ./genWebQual.sh '.$realDir."/".$file.' >> /tmp/log1 2>&1 &"');
+                exec("exec nohup setsid ./genWebQual.sh ".$realDir."/".$file.' >> /tmp/log1 2>&1 & sleep 0.5');
 	}
 	else
 	{
@@ -69,14 +69,13 @@ if ( $imageCount > 0 ){
     "name" => "Start Galeria here", 
     "file" => "$realDir",
     "link" => "${rootUrl}show.php?dir=".WEB_QUALITY_DIR."$simplePath");
+    exec('bash -c "exec nohup setsid ./genWebQual.sh '.$realDir.' >> /tmp/log2 2>&1 & sleep 0.5"');
 }
 
 if (dirname($simplePath) !== '')
 	$parentLink = $scriptUrl.dirname($simplePath);
 else
 	$parentLink = "";
-
-//exec("echo exec'd >>test");
 
 
 ///// template starts here /////
