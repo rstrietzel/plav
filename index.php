@@ -33,7 +33,8 @@ if (! is_dir($realDir)) {
 	header("HTTP/1.1 404 Not Found");
 	die("Directory Not Found");
 }
-shell_exec("./genWebQual.sh $realDir 2>&1 >/dev/zero \& ; disown %1");
+//exec exec* since that will be executed by bash specifically and not maybe by dash or sth else
+shell_exec("./execGenWebQual.sh $realDir");
 
 // init folders with the . folder
 $folders = array();
@@ -49,7 +50,7 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 	{
 		$folders[] = array( "name" => $file, "file" => "$realDir/$file", "link" => "$scriptUrl$simplePath/$file" );
                 $folderCount++;
-                shell_exec("./genWebQual.sh $realDir/$file 2>&1 >/dev/zero \& ; disown %1");
+                shell_exec("./execGenWebQual.sh $realDir/$file");
 	}
 	else
 	{
