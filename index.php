@@ -68,7 +68,7 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 
 if ( $imageCount > 0 ){
     $folders[] = array( 
-    "name" => "Start Galeria here", 
+    "name" => "Start Galleria here", 
     "file" => "$realDir",
     "link" => "${rootUrl}show.php?dir=".WEB_QUALITY_DIR."$simplePath");
     exec("exec nohup setsid ./genWebQual.sh  $realDir ".THUMB_DIR." ".THUMB_SIZE." >> /tmp/log1 2>&1 & sleep 0.1");
