@@ -49,7 +49,39 @@ a {
 	font-size: 0.25cm;
 	color: gray;
 }
+.working{
+	background-color: gray;
+}
+.working a{
+	text-decoration: line-through;
+}
 </style>
+<script src="<?php echo JQUERY_URL?>"></script>
+<script type="text/javascript">
+
+function isWorking(url){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status!=404;
+}
+function checkfolders(){
+	$(".folder").each(function(index) {
+		if(isWorking("../"+$(this).attr('id')+'/.lock')){
+			$(this).addClass("working");
+			 setTimeout(checkfolders,500);
+		}
+		else {
+	        $(this).removeClass("working");
+		}
+
+		});
+	}
+$(function() {
+	checkfolders();
+});
+
+</script>
 <?php foreach ($plugins as $p) if (is_file("plugins/$p/style.css")) { ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $rootUrl."plugins/$p/style.css" ?>" />
 <?php } ?>
@@ -65,7 +97,7 @@ a {
 <?php plugins_include("before_content.php") ?>
 
 <?php foreach($folders as $folder) { $preview = getAlbumPreview($folder["file"]); ?>
-	<div class="folder">
+	<div class="folder" id="<?php echo WEB_QUALITY_DIR."/".$simplePath.$folder["name"]; ?>">
 	<?php if ($preview === "") { ?>
 		<div class="square"><div class="image_nopreview"> - </div></div>
 		<div class="square"><div class="foldername_nopreview"> <a href="<?php echo $folder["link"] ?>"><?php echo $folder["name"] ?></a> </div></div>

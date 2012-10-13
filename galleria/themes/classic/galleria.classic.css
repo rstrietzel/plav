@@ -2,10 +2,10 @@
 #buttons{
     position: absolute;
     top: 10px;
-    width: 600px;
+    width: 700px;
     height: 20px;
     left: 50%;
-    margin-left: -300px;
+    margin-left: -350px;
     z-index: 10042;
     padding: 20px;
 }
