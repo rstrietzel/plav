@@ -50,7 +50,8 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 	{
 		$folders[] = array( "name" => $file, "file" => "$realDir/$file", "link" => "$scriptUrl$simplePath/$file" );
                 $folderCount++;
-                exec("exec nohup setsid ./genWebQual.sh ".$realDir."/".$file.' >> /tmp/log1 2>&1 & sleep 0.5');
+                exec("exec nohup setsid ./genWebQual.sh  $realDir/$file ".THUMB_DIR." ".THUMB_SIZE." >> /tmp/log1 2>&1 & sleep 0.1");
+                exec("exec nohup setsid ./genWebQual.sh  $realDir/$file ".WEB_QUALITY_DIR." ".WEB_SIZE." >> /tmp/log1 2>&1 & sleep 0.1");
 	}
 	else
 	{
@@ -58,7 +59,8 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 		if ($ext == ".jpg" or $ext == ".png") {
 			$imageFiles[] = array( "name" => $file, "file" => "$realDir/$file", "link" => getImageLink("$simplePath/$file") );
                         $imageCount++;
-		} else {
+		} 
+                else {
 			$otherFiles[] = array( "name" => $file, "link" => "$rootUrl$realDir/$file" );
 		}
 	}
@@ -69,7 +71,8 @@ if ( $imageCount > 0 ){
     "name" => "Start Galeria here", 
     "file" => "$realDir",
     "link" => "${rootUrl}show.php?dir=".WEB_QUALITY_DIR."$simplePath");
-    exec('bash -c "exec nohup setsid ./genWebQual.sh '.$realDir.' >> /tmp/log2 2>&1 & sleep 0.5"');
+    exec("exec nohup setsid ./genWebQual.sh  $realDir ".THUMB_DIR." ".THUMB_SIZE." >> /tmp/log1 2>&1 & sleep 0.1");
+    exec("exec nohup setsid ./genWebQual.sh  $realDir ".WEB_QUALITY_DIR." ".WEB_SIZE." >> /tmp/log1 2>&1 & sleep 0.1");
 }
 
 if (dirname($simplePath) !== '')

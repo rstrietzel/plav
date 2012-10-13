@@ -1,5 +1,6 @@
 <?php
 define('THUMB_SIZE', 100);
+define('THUMB_DIR', 'thumbs');
 define('WEB_SIZE',1620);
 define('DATA_DIR', 'data');
 define('WEB_QUALITY', 75);
