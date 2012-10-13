@@ -5,7 +5,7 @@
 $server= $_SERVER['SERVER_NAME'];
 //if no image found, start a gallery here
 if ( $folderCount==0 ) {
-    header("Location://$server/$rootUrl/show.php?dir=WEB_QUALITY_DIR.$simplePath");
+    header("Location://${server}${rootUrl}show.php?dir=".WEB_QUALITY_DIR."$simplePath");
 
     exit();
     }
@@ -55,7 +55,6 @@ a {
 <?php } ?>
 </head>
 <body>
-<?php echo $imageCount ?>
 <div id="parentfolder"><a href="<?php echo $parentLink ?>">
 <?php if ($parentLink !== '') { ?>
 ^
@@ -75,11 +74,6 @@ a {
 		<?php if (isset($generating)) { ob_flush(); flush(); } ?>
 	<?php } ?>
 	</div>
-<?php } ?>
-
-<?php foreach ($imageFiles as $file) { ?>
-	<div class="square"><div class="image"><a href="<?php echo $file["link"] ?>"><img src="<?php echo $rootUrl.getPreview($file["file"]), WEB_SIZE ?>" alt="<?php echo $file["name"] ?>" /></a></div></div>
-	<?php if (isset($generating)) { ob_flush(); flush(); } ?>
 <?php } ?>
 
 <?php foreach ($otherFiles as $file) { ?>
