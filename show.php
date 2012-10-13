@@ -67,6 +67,10 @@
             });
            Galleria.ready(function() {
                 var gallery = this; // galleria is ready and the gallery is assigned
+                $('#slideshow').click(function() {
+                        gallery.playToggle(); // toggles the slideshow
+                });
+
                 $('#fullscreen').click(function() {
                         gallery.toggleFullscreen(); // toggles the fullscreen
                 });
