@@ -49,7 +49,7 @@
         if ($handle = opendir($dir)) {
             while (false !== ($file = readdir($handle))) {
                 if (stripos($file, "jpg") !== false) {
-                    $thumbdir = "thumb/".implode('/', array_slice(explode('/', $dir), 1))."/".$file;
+                    $thumbdir = THUMB_DIR."/".implode('/', array_slice(explode('/', $dir), 1))."/".$file;
                     echo "<a href=\"".$dir."/".$file."\"><img src=\"".$thumbdir."\"></a>";
                 }
             }
