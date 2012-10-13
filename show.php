@@ -1,5 +1,5 @@
 <!-- Show Gallery here -->
-
+<?php include("config.php")?>
 <!doctype html>
 <html>
     <head>
@@ -7,7 +7,7 @@
             #galleria{ width: 100%; height: 100%; background: #000 }
             html, body {background: #000; width: 100%; height: 100%; padding:0; margin: 0;}
         </style>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script src="<?php echo JQUERY_URL?>"></script>
         <script src="galleria/galleria-1.2.8.min.js"></script>
     </head>
     <body>
