@@ -54,18 +54,21 @@ if (! is_dir($realDir)) {
 $folders = array();
 $imageFiles = array();
 $otherFiles = array();
+$folderCount = 0;
 
 foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 {
 	if (is_dir("$realDir/$file"))
 	{
 		$folders[] = array( "name" => $file, "file" => "$realDir/$file", "link" => "$scriptUrl$simplePath/$file" );
+                $folderCount++;
 	}
 	else
 	{
 		$ext = strtolower(substr($file, -4));
 		if ($ext == ".jpg" or $ext == ".png") {
 			$imageFiles[] = array( "name" => $file, "file" => "$realDir/$file", "link" => getImageLink("$simplePath/$file") );
+                        $imageCount++;
 		} else {
 			$otherFiles[] = array( "name" => $file, "link" => "$rootUrl$realDir/$file" );
 		}
