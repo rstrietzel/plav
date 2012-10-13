@@ -2,6 +2,7 @@
 define('THUMB_SIZE', 100);
 define('WEB_SIZE',1920);
 define('DATA_DIR', 'data');
+define('WEB_QUALITY', 85);
 define('WEB_QUALITY_DIR', 'web');
 define('IMAGES_DIR', 'images');
 define('JQUERY_URL', '/javascript/jquery/jquery.js');
