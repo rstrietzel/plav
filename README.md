@@ -8,6 +8,7 @@ This is plav, the Photo Library And Viewer. plav is a web gallery that:
 Install requirements:
 - a webserver: tested with apache2 and lighttpd
 - php5 (including cli) + php5-gd
+- imagemagick
 - preferably: a local jquery installation. on debian/ubuntu-like system this 
 means libjs-jquery + javascript-common
 
