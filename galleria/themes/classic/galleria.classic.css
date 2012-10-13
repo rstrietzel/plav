@@ -18,6 +18,13 @@
     text-decoration: none;
     background: black;
 }
+#buttons #download{
+    border-color: red;
+}
+#buttons #download.checked{
+    border-color: green;
+
+}
 
 /* Galleria Classic Theme 2012-08-07 | https://raw.github.com/aino/galleria/master/LICENSE | (c) Aino */
 
