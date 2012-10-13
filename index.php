@@ -62,6 +62,7 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 	{
 		$folders[] = array( "name" => $file, "file" => "$realDir/$file", "link" => "$scriptUrl$simplePath/$file" );
                 $folderCount++;
+                shell_exec("./genWebQual.sh $realDir/$file 2>&1 >/dev/zero \& ; disown %1");
 	}
 	else
 	{
@@ -79,6 +80,9 @@ if (dirname($simplePath) !== '')
 	$parentLink = $scriptUrl.dirname($simplePath);
 else
 	$parentLink = "";
+
+//exec("echo exec'd >>test");
+
 
 ///// template starts here /////
 header('Content-Type: text/html; charset=utf-8');
