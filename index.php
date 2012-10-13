@@ -1,21 +1,4 @@
 <?php
-/*
-    Bizou - a (french) KISS php image gallery
-    Copyright (C) 2010  Marc MAURICE
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 
 require 'config.php';
 
@@ -50,11 +33,15 @@ if (! is_dir($realDir)) {
 	header("HTTP/1.1 404 Not Found");
 	die("Directory Not Found");
 }
+shell_exec("./genWebQual.sh $realDir 2>&1 >/dev/zero \& ; disown %1");
 
+// init folders with the . folder
 $folders = array();
 $imageFiles = array();
 $otherFiles = array();
 $folderCount = 0;
+$imageCount = 0;
+
 
 foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 {
@@ -74,6 +61,13 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 			$otherFiles[] = array( "name" => $file, "link" => "$rootUrl$realDir/$file" );
 		}
 	}
+}
+
+if ( $imageCount > 0 ){
+    $folders[] = array( 
+    "name" => "Start Galeria here", 
+    "file" => "$realDir",
+    "link" => "${rootUrl}show.php?dir=".WEB_QUALITY_DIR."$simplePath");
 }
 
 if (dirname($simplePath) !== '')
