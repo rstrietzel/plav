@@ -66,16 +66,19 @@ function isWorking(url){
     return http.status!=404;
 }
 function checkfolders(){
+	var refresh = false;
+
 	$(".folder").each(function(index) {
 		if(isWorking("../"+$(this).attr('id')+'/.lock')){
 			$(this).addClass("working");
-			 setTimeout(checkfolders,500);
+			refresh = 1;
 		}
 		else {
 	        $(this).removeClass("working");
 		}
-
 		});
+		if(refresh == 1) setTimeout(checkfolders,800);
+
 	}
 $(function() {
 	checkfolders();

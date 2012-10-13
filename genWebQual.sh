@@ -12,8 +12,8 @@ if [ $? != 0 ] ; then
     logger -s "plav: ImageMagick's convert not found"
     exit 1
 fi
-echo $folder >> /tmp/folder
-echo `pwd`>> /tmp/folder
+#echo $folder >> /tmp/folder
+#echo `pwd`>> /tmp/folder
 
 #embedded php ftw - get the size and directory of web quality images
 size=`$php -r 'include("config.php"); echo WEB_SIZE;'`
@@ -22,15 +22,16 @@ wqd=`$php -r 'include("config.php"); echo WEB_QUALITY_DIR;'`
 wq=`$php -r 'include("config.php"); echo WEB_QUALITY;'`
 dest=${wqd}/${folder#$ImagesDir}
 
-if [ !  -e $dest ] ; then mkdir -p $dest ; fi
+if [ !  -e "$dest" ] ; then mkdir -p $dest ; fi
 if [ -e ${dest}/.lock ] ; then
+	echo $folder >> /tmp/log3
     echo another instance is running in $wqd, exiting
     exit
 fi
 touch ${dest}/.lock
 for file in ${dest}/* ; do
     sfile=${folder}$(basename $file)
-    if [ ! -e $sfile ] ; 
+    if [ ! -e "$sfile" ] ; 
         then rm $file
     fi
 done

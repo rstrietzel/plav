@@ -34,7 +34,7 @@ if (! is_dir($realDir)) {
 	die("Directory Not Found");
 }
 //exec exec* since that will be executed by bash specifically and not maybe by dash or sth else
-shell_exec("./execGenWebQual.sh $realDir");
+exec('bash -c "exec nohup setsid ./genWebQual.sh '.$realDir.' >> /tmp/log2 2>&1 &"');
 
 // init folders with the . folder
 $folders = array();
@@ -50,7 +50,7 @@ foreach (scandir($realDir) as $file) if ($file != '.' and $file != '..')
 	{
 		$folders[] = array( "name" => $file, "file" => "$realDir/$file", "link" => "$scriptUrl$simplePath/$file" );
                 $folderCount++;
-                shell_exec("./execGenWebQual.sh $realDir/$file");
+                exec('bash -c "exec nohup setsid ./genWebQual.sh '.$realDir."/".$file.' >> /tmp/log1 2>&1 &"');
 	}
 	else
 	{
