@@ -46,6 +46,21 @@
 
         <?php
         $dir=$_GET['dir'];
+        $images = array();
+        if($files = scandir($dir)){
+            foreach ($files as $key => $file) {
+                if (stripos($file, "jpg") !== false) {
+                    $exif = exif_read_data ($dir."/".$file);
+                    $images[$exif['DateTime']] = $file;
+                }            
+            }
+        }
+        foreach ($images as $time => $image) {
+            $thumbdir = THUMB_DIR."/".implode('/', array_slice(explode('/', $dir), 1))."/".$image;
+            echo "<a href=\"".$dir."/".$image."\"><img src=\"".$thumbdir."\"></a>";
+        }
+
+        /*
         if ($handle = opendir($dir)) {
             while (false !== ($file = readdir($handle))) {
                 if (stripos($file, "jpg") !== false) {
@@ -55,6 +70,7 @@
             }
             closedir($handle);
         }
+        */
         ?>
         </div>
         <script>
