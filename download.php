@@ -5,6 +5,7 @@ $destination = '/tmp/dl.zip';
 $downloadlist = explode(",",$_COOKIE["downloadlist"]) ;
 $overwrite = true;
 foreach ($downloadlist as $index => $file) {
+	$file = str_replace("../", "", $file);
 	$file = explode("/", $file);
 	$file[0] = IMAGES_DIR;
 	//$file[count($file)-1] = implode(".",array_slice(explode(".",$file[count($file)-1]), 1));
